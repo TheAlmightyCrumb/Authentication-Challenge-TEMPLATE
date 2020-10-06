@@ -1,0 +1,12 @@
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+    "email": "admin@email.com",
+    "password": "Rc123456!"
+}
+
+###
+
+POST http://localhost:8080/users/tokenValidate
+Authorization: Bearer 
