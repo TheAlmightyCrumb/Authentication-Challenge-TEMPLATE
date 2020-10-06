@@ -9,4 +9,13 @@ Content-Type: application/json
 ###
 
 POST http://localhost:8080/users/tokenValidate
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTYwMjAxMDE5NCwiZXhwIjoxNjAyMDEwMjE5fQ.zOiONh2A-DC4GOKLivtP5IGkYN-8n_ukotRw8-Ky01k
+
+###
+
+POST http://localhost:8080/users/token
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTYwMjAxMDE4Mn0.6xxTaQhkQodn7I7Tt_3yOBc696WWnQQnRSiztVxR-XI"
+}

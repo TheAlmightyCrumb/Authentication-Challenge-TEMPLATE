@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const bcrypt = require('bcrypt');
-const { generateAccessToken, generateRefreshToken, validateToken } = require('../token');
+const { generateAccessToken, generateRefreshToken, validateToken, useRefreshToken } = require('../token');
 
 let router = Router();
 
@@ -49,6 +49,12 @@ router
 
 .post('/tokenValidate', validateToken, async (req, res) => {
     return res.status(200).json({ valid: true });
+})
+
+.post('/token', useRefreshToken, async (req, res) => {
+    console.log('req.decoded: ', req.decoded);
+    const accessToken = generateAccessToken(req.decoded.email);
+    return res.status(200).json({ accessToken })
 })
 
 .get('/', async (req, res) => {

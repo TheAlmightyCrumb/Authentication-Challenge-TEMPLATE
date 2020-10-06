@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 function Network(endPoint, { body, ...customConfig } = {}) {
     const headers = {
         "Content-Type": "application/json;charset=utf-8'",
-        "Authorization": `Berear ${Cookies.get('accessToken')}`
+        "Authorization": `Bearer ${Cookies.get('accessToken')}`
     };
 
     const url = `${endPoint}`

@@ -9,7 +9,7 @@ function generateRefreshToken(email) {
 
 function generateAccessToken(email) {
     console.log(email);
-    return jwt.sign({ email }, ACCESS_TOKEN_SECRET, { expiresIn: '40s' });
+    return jwt.sign({ email }, ACCESS_TOKEN_SECRET, { expiresIn: '10s' });
 }
 
 function validateToken(req, res, next) {
@@ -23,4 +23,14 @@ function validateToken(req, res, next) {
     });
 }
 
-module.exports = { generateAccessToken, generateRefreshToken, validateToken };
+function useRefreshToken(req, res, next) {
+    const { refreshToken } = req.body;
+    if (refreshToken === null) return res.status(401).json({ message: 'Refresh Token Required' });
+    jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, (err, decoded) => {
+        if (err) return res.status(403).json({ message: 'Invalid Refresh Token' });
+        req.decoded = decoded;
+        next();
+    });
+}
+
+module.exports = { generateAccessToken, generateRefreshToken, validateToken, useRefreshToken };
