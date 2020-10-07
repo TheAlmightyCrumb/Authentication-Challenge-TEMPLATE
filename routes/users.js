@@ -1,16 +1,54 @@
 const { Router } = require('express');
 const bcrypt = require('bcrypt');
-const { generateAccessToken, generateRefreshToken, validateToken, useRefreshToken } = require('../token');
+const jwt = require('jsonwebtoken');
+const ACCESS_TOKEN_SECRET = '6F772A64291029A8D12';
+const REFRESH_TOKEN_SECRET = 'ABA787191032BFF4557';
+
+function generateRefreshToken(name) {
+    console.log(name);
+    return jwt.sign({ name }, REFRESH_TOKEN_SECRET);
+}
+
+function generateAccessToken(name) {
+    console.log(name);
+    return jwt.sign({ name }, ACCESS_TOKEN_SECRET, { expiresIn: '20s' });
+}
+
+function validateToken(req, res, next) {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+    if (token === null) return res.status(401).json({ message: 'Access Token Required' });
+    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, decoded) => {
+        if (err) return res.status(403).json({ message: 'Invalid Access Token' });
+        req.decoded = decoded;
+        next();
+    });
+}
+
+function useRefreshToken(req, res, next) {
+    const { refreshToken } = req.body;
+    console.log("refreshTokens:", refreshTokens);
+    if (refreshToken === null) return res.status(401).json({ message: 'Refresh Token Required' });
+    if (!refreshTokens.includes(refreshToken)) return res.status(403).json({ message: 'Invalid Refresh Token' });
+    jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, (err, decoded) => {
+        if (err) return res.status(403).json({ message: 'Invalid Refresh Token' });
+        req.decoded = decoded;
+        next();
+    });
+}
 
 let router = Router();
 
 let USERS = [
-    { email: "admin@email.com", name: "Admin", password: "", isAdmin: true }
+    { email: "admin@email.com", name: "Admin", password: "", isAdmin: true },
+    { email: "mate@mate.com", name: "Mate", password: "", isAdmin: false },
 ];
 
 let INFORMATION = [
     { name: 'Admin', info: 'Admin' }
 ];
+
+let refreshTokens = [];
 
 bcrypt.hash("Rc123456!", 10).then(response => {
     const admin = USERS.find(user => user.name === "Admin");
@@ -39,6 +77,7 @@ router
     if (!bcrypt.compare(password, user.password)) return res.status(403).json({ message: 'User or Password Incorrect' });
     const accessToken = generateAccessToken(user.name);
     const refreshToken = generateRefreshToken(user.name);
+    refreshTokens.push(refreshToken);
     console.log('accessToken ', accessToken)
     return res.status(200).json({
         accessToken, refreshToken, userName: user.name, isAdmin: user.isAdmin
@@ -55,8 +94,21 @@ router
     return res.status(200).json({ accessToken })
 })
 
+.post('/logout', useRefreshToken, async (req, res) => {
+    const { refreshToken } = req.body;
+    // if (refreshToken === null) return res.status(400).json({ message: 'Refresh Token Required' });
+    // console.log("refreshTokens:", refreshTokens);
+    // console.log("refreshToken: ", refreshToken);
+    // jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, (err, decoded) => {
+    //     if (err) return res.status(400).json({ message: 'Invalid Refresh Token' });
+    // });
+    refreshTokens = refreshTokens.filter(token => token !== refreshToken);
+    console.log("refreshTokens:", refreshTokens);
+    return res.status(200).json({ message: 'User Logged Out Successfully' });
+})
+
 .get('/', async (req, res) => {
     res.json(USERS);
 })
 
-module.exports = { router, INFORMATION };
+module.exports = { router, INFORMATION, USERS };

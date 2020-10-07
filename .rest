@@ -8,8 +8,17 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:8080/users/logout
+Content-Type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzY5OTd9.LOEOOT9eb7g26uGmI2w6DhkUHSBY6iX4Qma_J7j6xX0"
+}
+
+###
+
 POST http://localhost:8080/users/tokenValidate
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTYwMjA2MDQzNSwiZXhwIjoxNjAyMDYwNDU1fQ.kpOixTOXEk0uwWF5_FcoVtMVSWs4x0Jgmdcku5zbnq0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzUxOTEsImV4cCI6MTYwMjA3NTIxMX0.8AA1sZeJHeW8eO0W_Ias5qDcwYtfwEdmcxqbn81fTpA
 
 ###
 
@@ -17,10 +26,15 @@ POST http://localhost:8080/users/token
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNjExMjJ9.sC2MwI9h7VAF6x-ofY10clAQLOsYLuGpVJwdZHTjVJM"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzY5OTd9.LOEOOT9eb7g26uGmI2w6DhkUHSBY6iX4Qma_J7j6xX0"
 }
 
 ###
 
 GET http://localhost:8080/api/v1/information
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNjExNTQsImV4cCI6MTYwMjA2MTE3NH0.HKeTfMF76PzDXx9uKq5tvgk80I70vvBkuFcJLhPL97U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzc3MTMsImV4cCI6MTYwMjA3NzczM30.HTcCPaMkwcIKN1MQIgWgjdfe2hDeE-MYfr2d_Y4tdMU
+
+###
+
+GET http://localhost:8080/api/v1/information
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzgyMTcsImV4cCI6MTYwMjA3ODIzN30.3KgHyWlnjQvqcq-qxsupAozLylup2GDlKA9vPm9pSg0
