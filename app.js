@@ -1,6 +1,6 @@
 const express = require('express');
 const users = require('./routes/users');
-// const api = require('./routes/api');
+const api = require('./routes/api');
 
 const app = express();
 
@@ -9,8 +9,8 @@ const unknownEndpoint = (request, response) => {
 }
 
 app.use(express.json());
-app.use('/users', users);
-// app.use('/api/v1', api);
+app.use('/users', users.router);
+app.use('/api/v1', api);
 app.use(unknownEndpoint);
 
 module.exports = app;

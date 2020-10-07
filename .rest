@@ -9,7 +9,7 @@ Content-Type: application/json
 ###
 
 POST http://localhost:8080/users/tokenValidate
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTYwMjAxMDE5NCwiZXhwIjoxNjAyMDEwMjE5fQ.zOiONh2A-DC4GOKLivtP5IGkYN-8n_ukotRw8-Ky01k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTYwMjA2MDQzNSwiZXhwIjoxNjAyMDYwNDU1fQ.kpOixTOXEk0uwWF5_FcoVtMVSWs4x0Jgmdcku5zbnq0
 
 ###
 
@@ -17,5 +17,10 @@ POST http://localhost:8080/users/token
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTYwMjAxMDE4Mn0.6xxTaQhkQodn7I7Tt_3yOBc696WWnQQnRSiztVxR-XI"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNjExMjJ9.sC2MwI9h7VAF6x-ofY10clAQLOsYLuGpVJwdZHTjVJM"
 }
+
+###
+
+GET http://localhost:8080/api/v1/information
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNjExNTQsImV4cCI6MTYwMjA2MTE3NH0.HKeTfMF76PzDXx9uKq5tvgk80I70vvBkuFcJLhPL97U

@@ -56,8 +56,9 @@ function Home() {
 
     const getUsersInformation = () => {
         read('/api/v1/information')
-            .then(res =>
-                setUsersInformation(res))
+            .then(res => {
+                console.log(res);
+                setUsersInformation(res) })
             .catch(console.error)
     }
 
@@ -99,10 +100,10 @@ function Home() {
                     <div className='userName' >Name:</div>
                     <div className='userEmail' >Info:</div>
                 </span>].concat(
-                    usersInformation.map(user => <span className='usersInfo' key={user.user + user.info} >
-                        <div className='userName' >{user.user}</div>
-                        <div className='userEmail' >{user.info}</div>
-                    </span>))}
+                    <span className='usersInfo' key={usersInformation.name + usersInformation.info} >
+                        <div className='userName' >{usersInformation.name}</div>
+                        <div className='userEmail' >{usersInformation.info}</div>
+                    </span>)}
             <Button variant="warning" onClick={getAdminInformation} >Try to get information from server</Button>
             {aadminInformation &&
                 [<span className='tableContainer' key={'user.email + user.name'} >

@@ -6,7 +6,9 @@ let router = Router();
 
 router
 .get('/information', validateToken, async (req, res) => {
-    return res.status(200).json({ valid: true });
+    console.log('req.decoded: ', req.decoded);
+    const { name, info } = INFORMATION.find(user => user.name === req.decoded.name)
+    return res.status(200).json({ name, info });
 })
 
 module.exports = router;

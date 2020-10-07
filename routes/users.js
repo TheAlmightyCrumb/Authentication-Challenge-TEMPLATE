@@ -5,7 +5,7 @@ const { generateAccessToken, generateRefreshToken, validateToken, useRefreshToke
 let router = Router();
 
 let USERS = [
-    { email: "admin@email.com", name: "admin", password: "", isAdmin: true }
+    { email: "admin@email.com", name: "Admin", password: "", isAdmin: true }
 ];
 
 let INFORMATION = [
@@ -13,9 +13,7 @@ let INFORMATION = [
 ];
 
 bcrypt.hash("Rc123456!", 10).then(response => {
-    const admin = USERS.find(user => {
-        return user.name === "admin"
-    });
+    const admin = USERS.find(user => user.name === "Admin");
     admin.password = response;
 }).catch(e => console.log(e));
 
@@ -39,8 +37,8 @@ router
     const user = USERS.find(user => user.email === email);
     if (!user) return res.status(404).json({ message: 'Cannot find user' });
     if (!bcrypt.compare(password, user.password)) return res.status(403).json({ message: 'User or Password Incorrect' });
-    const accessToken = generateAccessToken(email);
-    const refreshToken = generateRefreshToken(email);
+    const accessToken = generateAccessToken(user.name);
+    const refreshToken = generateRefreshToken(user.name);
     console.log('accessToken ', accessToken)
     return res.status(200).json({
         accessToken, refreshToken, userName: user.name, isAdmin: user.isAdmin
@@ -53,7 +51,7 @@ router
 
 .post('/token', useRefreshToken, async (req, res) => {
     console.log('req.decoded: ', req.decoded);
-    const accessToken = generateAccessToken(req.decoded.email);
+    const accessToken = generateAccessToken(req.decoded.name);
     return res.status(200).json({ accessToken })
 })
 
@@ -61,4 +59,4 @@ router
     res.json(USERS);
 })
 
-module.exports = router;
+module.exports = { router, INFORMATION };

@@ -2,14 +2,14 @@ const jwt = require('jsonwebtoken');
 const ACCESS_TOKEN_SECRET = '6F772A64291029A8D12';
 const REFRESH_TOKEN_SECRET = 'ABA787191032BFF4557';
 
-function generateRefreshToken(email) {
-    console.log(email);
-    return jwt.sign({ email }, REFRESH_TOKEN_SECRET);
+function generateRefreshToken(name) {
+    console.log(name);
+    return jwt.sign({ name }, REFRESH_TOKEN_SECRET);
 }
 
-function generateAccessToken(email) {
-    console.log(email);
-    return jwt.sign({ email }, ACCESS_TOKEN_SECRET, { expiresIn: '10s' });
+function generateAccessToken(name) {
+    console.log(name);
+    return jwt.sign({ name }, ACCESS_TOKEN_SECRET, { expiresIn: '20s' });
 }
 
 function validateToken(req, res, next) {
