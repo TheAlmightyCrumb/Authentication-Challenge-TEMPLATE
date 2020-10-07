@@ -1,3 +1,7 @@
+OPTIONS http://localhost:8080/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwOTI4MDYsImV4cCI6MTYwMjA5MjgxNn0.imJBwzbkQsCLj8iYI9EZ60YR9HtXbrAVuWQ9Vh5RDrc
+
+###
 POST http://localhost:8080/users/login
 Content-Type: application/json
 
@@ -12,13 +16,13 @@ POST http://localhost:8080/users/logout
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzY5OTd9.LOEOOT9eb7g26uGmI2w6DhkUHSBY6iX4Qma_J7j6xX0"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwOTI4NTF9.7_hcUSVfeSfrYKKE6whYQ2yYjEshgSy-DWyA_QT-Mm4"
 }
 
 ###
 
 POST http://localhost:8080/users/tokenValidate
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzUxOTEsImV4cCI6MTYwMjA3NTIxMX0.8AA1sZeJHeW8eO0W_Ias5qDcwYtfwEdmcxqbn81fTpA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWF0ZSIsImlhdCI6MTYwMjA4NzQ5MiwiZXhwIjoxNjAyMDg3NTEyfQ.THxZdkEtiX7yZADN-T_MeqTd6BwynI_ZO3zgau6DEfQ
 
 ###
 
@@ -26,15 +30,15 @@ POST http://localhost:8080/users/token
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzY5OTd9.LOEOOT9eb7g26uGmI2w6DhkUHSBY6iX4Qma_J7j6xX0"
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwOTI4NTF9.7_hcUSVfeSfrYKKE6whYQ2yYjEshgSy-DWyA_QT-Mm4"
 }
 
 ###
 
 GET http://localhost:8080/api/v1/information
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzc3MTMsImV4cCI6MTYwMjA3NzczM30.HTcCPaMkwcIKN1MQIgWgjdfe2hDeE-MYfr2d_Y4tdMU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWF0ZSIsImlhdCI6MTYwMjA4ODE1MiwiZXhwIjoxNjAyMDg4MTcyfQ.eloN_Ggxw-OsDwV7Fs6fPn_m39UVszKDF8HIAHeLeXQ
 
 ###
 
-GET http://localhost:8080/api/v1/information
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwNzgyMTcsImV4cCI6MTYwMjA3ODIzN30.3KgHyWlnjQvqcq-qxsupAozLylup2GDlKA9vPm9pSg0
+GET http://localhost:8080/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwODg1ODcsImV4cCI6MTYwMjA4ODU5N30.mkaULFwdC0A144xZr7pscYnLn-RJ2gi8gotam610Hgs
