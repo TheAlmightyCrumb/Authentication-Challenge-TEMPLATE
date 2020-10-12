@@ -11,7 +11,7 @@ function generateRefreshToken(name) {
 
 function generateAccessToken(name) {
     console.log(name);
-    return jwt.sign({ name }, ACCESS_TOKEN_SECRET, { expiresIn: '10s' });
+    return jwt.sign({ name }, ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
 }
 
 function validateToken(req, res, next) {
@@ -26,11 +26,12 @@ function validateToken(req, res, next) {
 }
 
 function useRefreshToken(req, res, next) {
-    const { refreshToken } = req.body;
-    console.log("refreshTokens:", refreshTokens);
-    if (!refreshToken) return res.status(401).json({ message: 'Refresh Token Required' });
-    if (!refreshTokens.includes(refreshToken)) return res.status(403).json({ message: 'Invalid Refresh Token' });
-    jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, (err, decoded) => {
+    const { token } = req.body;
+    console.log("refreshToken: ", token);
+    console.log("refreshTokens: ", refreshTokens);
+    if (!token) return res.status(401).json({ message: 'Refresh Token Required' });
+    if (!refreshTokens.includes(token)) return res.status(403).json({ message: 'Invalid Refresh Token' });
+    jwt.verify(token, REFRESH_TOKEN_SECRET, (err, decoded) => {
         if (err) return res.status(403).json({ message: 'Invalid Refresh Token' });
         req.decoded = decoded;
         next();
@@ -97,12 +98,6 @@ router
 
 .post('/logout', useRefreshToken, async (req, res) => {
     const { refreshToken } = req.body;
-    // if (refreshToken === null) return res.status(400).json({ message: 'Refresh Token Required' });
-    // console.log("refreshTokens:", refreshTokens);
-    // console.log("refreshToken: ", refreshToken);
-    // jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, (err, decoded) => {
-    //     if (err) return res.status(400).json({ message: 'Invalid Refresh Token' });
-    // });
     refreshTokens = refreshTokens.filter(token => token !== refreshToken);
     console.log("refreshTokens:", refreshTokens);
     return res.status(200).json({ message: 'User Logged Out Successfully' });

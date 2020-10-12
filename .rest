@@ -30,7 +30,7 @@ POST http://localhost:8080/users/token
 Content-Type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwOTI4NTF9.7_hcUSVfeSfrYKKE6whYQ2yYjEshgSy-DWyA_QT-Mm4"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDI0ODk2OTF9.U0Z7glK1mxhM5xmfk5xiuZbqVrzY1x7vGI-ViU8NoL4"
 }
 
 ###
