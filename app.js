@@ -61,12 +61,12 @@ app.options('/', async (req, res) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     if (!token) return res.status(200).header('Allow', 'OPTIONS, GET, POST').json(METHODS.slice(0, 2));
-    jwt.verify(token, ACCESS_TOKEN_SECRET, (err, decoded) => {
-        if (err) return res.status(200).header('Allow', 'OPTIONS, GET, POST').json(METHODS.slice(0, 3));
+    return jwt.verify(token, ACCESS_TOKEN_SECRET, (err, decoded) => {
+        if (err)  return res.status(200).header('Allow', 'OPTIONS, GET, POST').json(METHODS.slice(0, 3));
         const { isAdmin } = USERS.find(user => user.name === decoded.name);
         if (!isAdmin) return res.status(200).header('Allow', 'OPTIONS, GET, POST').json([...METHODS.slice(0, 3), ...METHODS.slice(4, 6)]);
+        else  return res.status(200).header('Allow', 'OPTIONS, GET, POST').json(METHODS);
     })
-    return res.status(200).header('Allow', 'OPTIONS, GET, POST').json(METHODS);
 })
 
 app.use(express.json());

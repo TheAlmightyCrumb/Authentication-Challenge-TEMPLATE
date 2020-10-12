@@ -1,5 +1,5 @@
 OPTIONS http://localhost:8080/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDIwOTI4MDYsImV4cCI6MTYwMjA5MjgxNn0.imJBwzbkQsCLj8iYI9EZ60YR9HtXbrAVuWQ9Vh5RDrc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE2MDI1MTIxNTEsImV4cCI6MTYwMjUxMjE4MX0.RU9zXM9vyMDOgNEFbWoobdJugeG-RCg9JbofrU3PvF8
 
 ###
 POST http://localhost:8080/users/login
